@@ -18,13 +18,42 @@ test('PLACE should be the first command', () => {
   }).toThrowError();
 });
 
-test('MOVE should move the robot one unit north', () => {
-  const robot = new Robot();
-  robot.PLACE(0, 0, 'NORTH');
-  robot.MOVE();
+test('MOVE should move the robot one unit in the direction it\'s facing', () => {
+  const tests = [
+    { origin: [0, 0, 'NORTH'], expected: [0, 1, 'NORTH'] },
+    { origin: [0, 4, 'SOUTH'], expected: [0, 3, 'SOUTH'] },
+    { origin: [0, 0, 'EAST'], expected: [1, 0, 'EAST'] },
+    { origin: [4, 0, 'WEST'], expected: [3, 0, 'WEST'] },
+  ];
 
-  const expected = [0, 1, 'NORTH'];
-  const actual = robot.REPORT();
+  tests.forEach((test) => {
+    const robot = new Robot();
+    robot.PLACE(...test.origin);
+    robot.MOVE();
 
-  expect(actual).toEqual(expected);
+    const expected = test.expected;
+    const actual = robot.REPORT();
+
+    expect(actual).toEqual(expected);
+  });
+});
+
+test('MOVE should not allow the robot to fall off the table', () => {
+  const tests = [
+    [0, 4, 'NORTH'],
+    [0, 0, 'SOUTH'],
+    [4, 0, 'EAST'],
+    [0, 0, 'WEST'],
+  ];
+
+  tests.forEach((test) => {
+    const robot = new Robot();
+    robot.PLACE(...test);
+    robot.MOVE();
+
+    const expected = test;
+    const actual = robot.REPORT();
+
+    expect(actual).toEqual(expected);
+  });
 });
