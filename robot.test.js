@@ -57,3 +57,45 @@ test('MOVE should not allow the robot to fall off the table', () => {
     expect(actual).toEqual(expected);
   });
 });
+
+test('LEFT should turn the robot to the left', () => {
+  const tests = [
+    { origin: 'NORTH', expected: 'WEST' },
+    { origin: 'SOUTH', expected: 'EAST' },
+    { origin: 'EAST', expected: 'NORTH' },
+    { origin: 'WEST', expected: 'SOUTH' },
+  ];
+
+  tests.forEach((test) => {
+    const robot = new Robot();
+
+    robot.PLACE(0, 0, test.origin);
+    robot.LEFT();
+
+    const expected = [0, 0, test.expected];
+    const actual = robot.REPORT();
+
+    expect(actual).toEqual(expected);
+  });
+});
+
+test('RIGHT should turn the robot to the right', () => {
+  const tests = [
+    { origin: 'NORTH', expected: 'EAST' },
+    { origin: 'SOUTH', expected: 'WEST' },
+    { origin: 'EAST', expected: 'SOUTH' },
+    { origin: 'WEST', expected: 'NORTH' },
+  ];
+
+  tests.forEach((test) => {
+    const robot = new Robot();
+
+    robot.PLACE(0, 0, test.origin);
+    robot.RIGHT();
+
+    const expected = [0, 0, test.expected];
+    const actual = robot.REPORT();
+
+    expect(actual).toEqual(expected);
+  });
+});

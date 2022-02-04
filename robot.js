@@ -19,6 +19,20 @@ class Robot {
     if (this.facing === 'WEST' && this.x > 0) this.x--;
   }
 
+  LEFT() {
+    if (this.facing === 'NORTH') this.facing = 'WEST';
+    else if (this.facing === 'SOUTH') this.facing = 'EAST';
+    else if (this.facing === 'EAST') this.facing = 'NORTH';
+    else if (this.facing === 'WEST') this.facing = 'SOUTH';
+  }
+
+  RIGHT() {
+    if (this.facing === 'NORTH') this.facing = 'EAST';
+    else if (this.facing === 'SOUTH') this.facing = 'WEST';
+    else if (this.facing === 'EAST') this.facing = 'SOUTH';
+    else if (this.facing === 'WEST') this.facing = 'NORTH';
+  }
+
   REPORT() {
     // Expects a PLACE command to have been called first
     if (!this.x && !this.y && !this.facing) {
