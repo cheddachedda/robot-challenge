@@ -1,4 +1,4 @@
-const { reduceInput, validateInput } = require('./src/helpers/helpers');
+const { reduceInput, validateInput } = require('./helpers/helpers');
 
 class Robot {
   constructor() {
