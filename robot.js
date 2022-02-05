@@ -1,3 +1,5 @@
+const { reduceInput, validateInput } = require('./src/helpers/helpers');
+
 class Robot {
   constructor() {
     this.x = null;
@@ -6,10 +8,18 @@ class Robot {
   }
 
   PLACE(x, y, f) {
-    // TODO: validate input
-    this.x = x;
-    this.y = y;
-    this.facing = f;
+    // Trims whitespace from string and converts to uppercase before validation
+    f = reduceInput(f);
+    
+    const { valid, errors } = validateInput(x, y, f);
+
+    if (valid) {
+      this.x = x;
+      this.y = y;
+      this.facing = f;
+    } else {
+      throw errors;
+    }
   }
 
   MOVE() {
@@ -40,10 +50,6 @@ class Robot {
     }
     return [this.x, this.y, this.facing];
   }
-}
-
-const validatePlaceInput = (x, y, f) => {
-
 }
 
 module.exports = Robot;
