@@ -23,7 +23,7 @@ describe('.id', () => {
 
 });
 
-describe('.report()', () => {
+describe('REPORT', () => {
 
   test('should return the robot\'s current position', () => {
     const robot = new Robot();
@@ -44,7 +44,7 @@ describe('.report()', () => {
 
 });
 
-describe('.place()', () => {
+describe('PLACE', () => {
 
   test('should be the first command', () => {
     const robot = new Robot();
@@ -56,7 +56,7 @@ describe('.place()', () => {
 
 });
 
-describe('.move()', () => {
+describe('MOVE', () => {
 
   test('should move the robot one unit in the direction it\'s facing', () => {
     const tests = [
@@ -100,7 +100,7 @@ describe('.move()', () => {
 
 });
 
-describe('.left()', () => {
+describe('LEFT', () => {
 
   test('should turn the robot to the left', () => {
     const tests = [
@@ -125,7 +125,7 @@ describe('.left()', () => {
 
 });
 
-describe('.right()', () => {
+describe('RIGHT', () => {
 
   test('should turn the robot to the right', () => {
     const tests = [
