@@ -2,9 +2,16 @@ const { reduceInput, validateInput } = require('./helpers/helpers');
 
 class Robot {
   constructor() {
+    this.id = this.generateID();
     this.x = null;
     this.y = null;
     this.facing = null;
+  }
+  
+  generateID() {
+    const letter = () => String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    const num = () => Math.floor(Math.random() * 10);
+    return [ letter(), letter(), num(), num(), num() ].join(''); ;
   }
 
   PLACE(x, y, f) {

@@ -1,5 +1,24 @@
 const Robot = require('./robot');
 
+test('Robot should have a valid ID', () => {
+  const robot = new Robot();
+  const regex = /[A-Z]{2}\d{3}/;
+
+  const expected = true;
+  const actual = regex.test(robot.id);
+  expect(actual).toBe(expected);
+
+  const expectedlength = 5;
+  const actualLength = robot.id.length;
+  expect(actualLength).toBe(expectedlength);
+});
+
+test('.id should return the same ID when called repeatedly', () => {
+  const robot = new Robot();
+  expect(robot.id).toBe(robot.id);
+  expect(robot.id).toBe(robot.id);
+});
+
 test('REPORT should return the robot\'s current position', () => {
   const robot = new Robot();
   robot.PLACE(0, 0, 'NORTH');
