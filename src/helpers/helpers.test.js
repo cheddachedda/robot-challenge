@@ -1,4 +1,19 @@
-const { reduceInput, validateInput } = require('./helpers');
+const { generateID, reduceInput, validateInput } = require('./helpers');
+
+describe('generateID', () => {
+  test('generateID() should produce a valid ID', () => {
+    const id = generateID();
+    const regex = /[A-Z]{2}\d{3}/;
+  
+    const expected = true;
+    const actual = regex.test(id);
+    expect(actual).toBe(expected);
+  
+    const expectedlength = 5;
+    const actualLength = id.length;
+    expect(actualLength).toBe(expectedlength);
+  });
+});
 
 test('reduceInput() should trim whitespace', () => {
   const tests = [

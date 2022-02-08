@@ -1,3 +1,9 @@
+const generateID = () => {
+  const letter = () => String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  const num = () => Math.floor(Math.random() * 10);
+  return [ letter(), letter(), num(), num(), num() ].join('');
+};
+
 const reduceInput = (f) => f.trim().toUpperCase();
 
 const validateInput = (x, y, f) => {
@@ -20,4 +26,4 @@ const validateInput = (x, y, f) => {
   return { valid, errors };
 };
 
-module.exports = { reduceInput, validateInput };
+module.exports = { generateID, reduceInput, validateInput };
