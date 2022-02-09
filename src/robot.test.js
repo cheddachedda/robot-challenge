@@ -54,6 +54,25 @@ describe('PLACE', () => {
     }).toThrowError();
   });
 
+  test('should correctly reposition the robot', () => {
+    const robot = new Robot();
+    const tests = [
+      [0, 0, 'NORTH'],
+      [1, 2, 'SOUTH'],
+      [3, 4, 'EAST'],
+      [4, 1, 'WEST'],
+    ];
+
+    tests.forEach((test) => {
+      robot.PLACE(...test);
+
+      const expected = test;
+      const actual = robot.REPORT();
+
+      expect(actual).toEqual(expected);
+    });
+  });
+
 });
 
 describe('MOVE', () => {
