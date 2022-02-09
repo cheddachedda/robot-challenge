@@ -169,38 +169,42 @@ describe('RIGHT', () => {
 
 });
 
-test('Should pass CONSTRAINT #1', () => {
-  const robot = new Robot();
-  robot.PLACE(0, 0, 'NORTH');
-  robot.MOVE();
+describe('Constraints', () => {
 
-  const expected = [0, 1, 'NORTH'];
-  const actual = robot.REPORT();
+  test('Should pass Constraint #1', () => {
+    const robot = new Robot();
+    robot.PLACE(0, 0, 'NORTH');
+    robot.MOVE();
+  
+    const expected = [0, 1, 'NORTH'];
+    const actual = robot.REPORT();
+  
+    expect(actual).toEqual(expected);
+  });
+  
+  test('Should pass Constraint #2', () => {
+    const robot = new Robot();
+    robot.PLACE(0, 0, 'NORTH');
+    robot.LEFT();
+  
+    const expected = [0, 0, 'WEST'];
+    const actual = robot.REPORT();
+  
+    expect(actual).toEqual(expected);
+  });
+  
+  test('Should pass Constraint #3', () => {
+    const robot = new Robot();
+    robot.PLACE(1, 2, 'EAST');
+    robot.MOVE();
+    robot.MOVE();
+    robot.LEFT();
+    robot.MOVE();
+  
+    const expected = [3, 3, 'NORTH'];
+    const actual = robot.REPORT();
+  
+    expect(actual).toEqual(expected);
+  });
 
-  expect(actual).toEqual(expected);
-});
-
-test('Should pass CONSTRAINT #2', () => {
-  const robot = new Robot();
-  robot.PLACE(0, 0, 'NORTH');
-  robot.LEFT();
-
-  const expected = [0, 0, 'WEST'];
-  const actual = robot.REPORT();
-
-  expect(actual).toEqual(expected);
-});
-
-test('Should pass CONSTRAINT #3', () => {
-  const robot = new Robot();
-  robot.PLACE(1, 2, 'EAST');
-  robot.MOVE();
-  robot.MOVE();
-  robot.LEFT();
-  robot.MOVE();
-
-  const expected = [3, 3, 'NORTH'];
-  const actual = robot.REPORT();
-
-  expect(actual).toEqual(expected);
 });
